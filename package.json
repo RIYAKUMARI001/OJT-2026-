@@ -1,0 +1,16 @@
+{
+  "name": "ai-interior-design-mvp",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w backend",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run start -w frontend",
+    "lint": "npm run lint -ws",
+    "typecheck": "npm run typecheck -ws"
+  }
+}
+

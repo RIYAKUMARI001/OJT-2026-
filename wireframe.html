@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>AI Interior Design — Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#0F0F0F;
+  font-family:'Syne',sans-serif;
+  min-height:100vh;
+  padding:48px 40px;
+  color:#fff;
+}
+.page-title{
+  font-size:13px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:#666;margin-bottom:6px;font-family:'DM Mono',monospace;
+}
+.project-name{
+  font-size:38px;font-weight:800;color:#fff;margin-bottom:4px;line-height:1;
+}
+.project-sub{
+  font-size:14px;color:#555;font-family:'DM Mono',monospace;margin-bottom:48px;
+}
+
+/* Section */
+.section{margin-bottom:64px;}
+.section-header{
+  display:flex;align-items:center;gap:16px;margin-bottom:28px;
+}
+.section-num{
+  font-size:11px;font-weight:700;letter-spacing:.15em;color:#333;
+  font-family:'DM Mono',monospace;padding:4px 10px;
+  border:1px solid #222;border-radius:20px;
+}
+.section-title{font-size:18px;font-weight:700;color:#fff;}
+.section-file{font-size:11px;color:#444;font-family:'DM Mono',monospace;margin-top:2px;}
+
+/* Phones row */
+.phones-row{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;}
+
+/* Phone shell */
+.phone{
+  width:220px;flex-shrink:0;
+  background:#1A1A1A;
+  border:1.5px solid #2A2A2A;
+  border-radius:38px;
+  overflow:hidden;
+  position:relative;
+}
+.phone-inner{
+  margin:10px;
+  border-radius:28px;
+  overflow:hidden;
+  background:#F8F7F4;
+  min-height:420px;
+  position:relative;
+}
+.status-bar{
+  height:44px;background:#F8F7F4;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 20px 8px;position:relative;
+}
+.status-bar .time{font-size:12px;font-weight:700;color:#1A1A1A;font-family:'DM Mono',monospace;}
+.status-bar .icons{display:flex;gap:5px;align-items:center;}
+.status-bar .icons span{display:block;background:#1A1A1A;border-radius:2px;}
+.dynamic-island{
+  position:absolute;left:50%;transform:translateX(-50%);top:12px;
+  width:90px;height:26px;background:#1A1A1A;border-radius:20px;
+}
+.screen-content{padding:0 18px 24px;}
+
+/* Phone label */
+.phone-label{
+  margin-top:14px;text-align:center;
+  font-size:11px;font-weight:600;color:#fff;letter-spacing:.05em;
+}
+.phone-file{
+  text-align:center;font-size:10px;color:#444;
+  font-family:'DM Mono',monospace;margin-top:3px;
+}
+
+/* UI primitives */
+.heading{font-size:22px;font-weight:800;color:#1A1A1A;margin-bottom:4px;line-height:1.1;}
+.subhead{font-size:13px;color:#888;margin-bottom:20px;font-weight:500;}
+.label{font-size:11px;font-weight:600;color:#888;margin-bottom:6px;letter-spacing:.05em;}
+.input{
+  width:100%;padding:12px 14px;border-radius:12px;
+  border:1.5px solid #E5E3DE;background:#fff;
+  font-size:13px;color:#1A1A1A;margin-bottom:12px;
+  font-family:'Syne',sans-serif;font-weight:500;
+}
+.input.filled{background:#F0EEE8;border-color:#E0DDD6;}
+.btn-primary{
+  width:100%;padding:14px;border-radius:14px;
+  background:#1A1A1A;color:#fff;
+  font-size:13px;font-weight:700;text-align:center;
+  margin-bottom:10px;letter-spacing:.02em;
+}
+.btn-secondary{
+  width:100%;padding:13px;border-radius:14px;
+  background:#fff;color:#1A1A1A;
+  border:1.5px solid #E5E3DE;
+  font-size:13px;font-weight:600;text-align:center;
+  margin-bottom:10px;
+}
+.btn-ghost{
+  width:100%;padding:12px;border-radius:12px;
+  background:#F0EEE8;color:#666;
+  font-size:12px;font-weight:600;text-align:center;
+  margin-bottom:8px;
+}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.chip{
+  padding:7px 13px;border-radius:20px;
+  font-size:11px;font-weight:600;
+  border:1.5px solid #E5E3DE;background:#fff;color:#888;
+}
+.chip.active{background:#1A1A1A;color:#fff;border-color:#1A1A1A;}
+.divider{height:1px;background:#EEECEA;margin:14px 0;}
+.badge{
+  display:inline-block;padding:4px 10px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.04em;
+}
+.badge-blue{background:#EBF3FF;color:#1D4ED8;}
+.badge-green{background:#EDFAF4;color:#059669;}
+.badge-amber{background:#FFF8E6;color:#D97706;}
+.badge-red{background:#FFF0F0;color:#DC2626;}
+.row{display:flex;align-items:center;justify-content:space-between;}
+.col{display:flex;flex-direction:column;}
+.card{
+  background:#fff;border-radius:16px;
+  border:1.5px solid #EEECEA;
+  padding:14px;margin-bottom:10px;
+}
+
+/* GRID */
+.room-grid{
+  width:100%;aspect-ratio:1;
+  background:#fff;border:1.5px solid #E5E3DE;
+  border-radius:10px;overflow:hidden;position:relative;
+  display:grid;
+}
+/* Bottom nav */
+.bottom-nav{
+  display:flex;justify-content:space-around;
+  padding:12px 0 6px;
+  border-top:1px solid #EEECEA;
+  background:#F8F7F4;
+  margin-top:auto;
+}
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bnav-icon{
+  width:28px;height:28px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.bnav-label{font-size:9px;font-weight:600;color:#aaa;}
+.bnav-item.active .bnav-label{color:#1A1A1A;}
+.bnav-item.active .bnav-icon{background:#1A1A1A;}
+
+/* SVG grid lines helper */
+.grid-svg{position:absolute;inset:0;width:100%;height:100%;}
+
+/* Annotation */
+.annotation{
+  margin-top:10px;
+  padding:8px 12px;
+  background:#1A1A1A;
+  border-radius:8px;
+  font-size:10px;color:#888;
+  font-family:'DM Mono',monospace;
+  line-height:1.6;
+}
+.annotation b{color:#fff;}
+
+/* 3D scene placeholder */
+.scene-3d{
+  width:100%;aspect-ratio:4/3;
+  background:#EDE9E3;
+  border-radius:10px;
+  overflow:hidden;position:relative;margin-bottom:12px;
+}
+
+/* Toolbar */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;
+}
+.toolbar-left{font-size:12px;font-weight:700;color:#1A1A1A;}
+.toolbar-actions{display:flex;gap:6px;}
+.icon-btn{
+  width:30px;height:30px;border-radius:8px;
+  background:#F0EEE8;border:1.5px solid #E5E3DE;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;
+}
+
+/* Error screen */
+.phone-inner.error-bg{background:#FFF7F7;}
+.phone-inner.dark-bg{background:#1A1A1A;}
+
+/* Context menu */
+.ctx-menu{
+  background:#fff;border-radius:14px;border:1.5px solid #EEECEA;
+  padding:8px;margin-top:10px;
+}
+.ctx-item{
+  padding:10px 12px;border-radius:10px;
+  font-size:12px;font-weight:600;color:#1A1A1A;
+  display:flex;align-items:center;gap:8px;
+}
+.ctx-item:hover{background:#F5F3EF;}
+.ctx-item.danger{color:#DC2626;}
+.ctx-sep{height:1px;background:#EEECEA;margin:4px 0;}
+
+/* Save card */
+.save-option{
+  display:flex;align-items:center;gap:12px;
+  padding:12px;border-radius:14px;
+  border:1.5px solid #EEECEA;background:#fff;
+  margin-bottom:8px;
+}
+.save-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+
+/* Designs list */
+.design-card{
+  background:#fff;border-radius:16px;border:1.5px solid #EEECEA;
+  padding:14px;margin-bottom:10px;overflow:hidden;position:relative;
+}
+.design-thumb{
+  width:100%;height:56px;border-radius:8px;
+  background:#F0EEE8;margin-bottom:10px;
+  position:relative;overflow:hidden;
+}
+
+/* Redline / annotation arrows */
+.redline{
+  display:flex;align-items:flex-start;gap:8px;
+  margin-top:10px;
+  font-size:10px;color:#555;
+  font-family:'DM Mono',monospace;
+  line-height:1.5;
+}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  flex-shrink:0;margin-top:4px;
+}
+</style>
+</head>
+<body>
+
+<div class="project-sub">AI Interior Design Platform · React Native </div>
+
+<!-- ═══════════════════════════════════════════
+  SECTION 1 — HOME + ROOM SETUP
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <div>
+      <div class="section-title">Onboarding Flow</div>
+      <div class="section-file">HomeScreen.tsx · RoomInputScreen.tsx · GridEngine.ts</div>
+    </div>
+  </div>
+  <div class="phones-row">
+
+    <!-- Phone 1: Home -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner" style="display:flex;flex-direction:column;">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div><div class="icons"><span style="width:14px;height:7px;"></span></div></div>
+          <div class="screen-content" style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:10px;">
+            <div style="width:48px;height:48px;border-radius:14px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="7" rx="1.5" fill="white" opacity=".9"/><rect x="13" y="3" width="8" height="7" rx="1.5" fill="white" opacity=".4"/><rect x="3" y="14" width="8" height="7" rx="1.5" fill="white" opacity=".4"/><rect x="13" y="14" width="8" height="7" rx="1.5" fill="white" opacity=".7"/></svg>
+            </div>
+            <div class="heading">Room<br/>Planner</div>
+            <div class="subhead">Design your space before you buy.</div>
+            <div class="btn-primary">Start New Room</div>
+            <div class="btn-secondary">Load Saved Design</div>
+            <div style="text-align:center;font-size:11px;color:#aaa;margin-top:6px;">2 saved designs</div>
+          </div>
+          <div class="bottom-nav">
+            <div class="bnav-item active">
+              <div class="bnav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 6.5L7 2l5 4.5V12H9V9H5v3H2V6.5z" fill="white"/></svg></div>
+              <span class="bnav-label">Home</span>
+            </div>
+            <div class="bnav-item">
+              <div class="bnav-icon" style="background:#F0EEE8;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="2" width="4" height="4" rx="1" fill="#888"/><rect x="8" y="2" width="4" height="4" rx="1" fill="#888"/><rect x="2" y="8" width="4" height="4" rx="1" fill="#888"/><rect x="8" y="8" width="4" height="4" rx="1" fill="#888"/></svg></div>
+              <span class="bnav-label">Designs</span>
+            </div>
+            <div class="bnav-item">
+              <div class="bnav-icon" style="background:#F0EEE8;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#888" stroke-width="1.5"/><path d="M2 12c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+              <span class="bnav-label">Profile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Home Screen</div>
+      <div class="phone-file">HomeScreen.tsx</div>
+    </div>
+
+    <!-- Phone 2: Room Setup -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div><div class="icons"></div></div>
+          <div class="screen-content">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;">
+              <div style="width:28px;height:28px;border-radius:8px;background:#F0EEE8;display:flex;align-items:center;justify-content:center;font-size:14px;">←</div>
+              <span style="font-size:16px;font-weight:700;color:#1A1A1A;">Room Setup</span>
+            </div>
+            <div class="label">ROOM TYPE</div>
+            <div class="chip-row">
+              <div class="chip active">Living Room</div>
+              <div class="chip">Bedroom</div>
+              <div class="chip">Kitchen</div>
+              <div class="chip">Office</div>
+            </div>
+            <div class="label">DIMENSIONS</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+              <div>
+                <div style="font-size:10px;color:#aaa;margin-bottom:4px;">Width (ft)</div>
+                <div class="input filled" style="margin:0;text-align:center;font-size:16px;font-weight:700;">12</div>
+              </div>
+              <div>
+                <div style="font-size:10px;color:#aaa;margin-bottom:4px;">Length (ft)</div>
+                <div class="input filled" style="margin:0;text-align:center;font-size:16px;font-weight:700;">14</div>
+              </div>
+            </div>
+            <div style="padding:10px 12px;border-radius:10px;background:#EBF3FF;border:1.5px solid #BDD9FF;margin-bottom:14px;">
+              <div style="font-size:11px;color:#1D4ED8;font-weight:600;">Valid range: 8 – 20 ft per side</div>
+            </div>
+            <div class="label">WALL COLOR</div>
+            <div style="display:flex;gap:8px;margin-bottom:18px;">
+              <div style="width:32px;height:32px;border-radius:10px;background:#F5F0E8;border:2.5px solid #1A1A1A;"></div>
+              <div style="width:32px;height:32px;border-radius:10px;background:#E8F0F5;border:1.5px solid #E5E3DE;"></div>
+              <div style="width:32px;height:32px;border-radius:10px;background:#F0E8F5;border:1.5px solid #E5E3DE;"></div>
+              <div style="width:32px;height:32px;border-radius:10px;background:#E8F5EE;border:1.5px solid #E5E3DE;"></div>
+              <div style="width:32px;height:32px;border-radius:10px;background:#F5E8E8;border:1.5px solid #E5E3DE;"></div>
+            </div>
+            <div class="btn-primary">Generate Grid →</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Room Setup</div>
+      <div class="phone-file">RoomInputScreen.tsx</div>
+    </div>
+
+    <!-- Phone 3: Validation Error -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner error-bg">
+          <div class="status-bar" style="background:#FFF7F7;"><span class="time">9:41</span><div class="dynamic-island" style="background:#1A1A1A;"></div><div class="icons"></div></div>
+          <div class="screen-content">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;">
+              <div style="width:28px;height:28px;border-radius:8px;background:#F0EEE8;display:flex;align-items:center;justify-content:center;font-size:14px;">←</div>
+              <span style="font-size:16px;font-weight:700;color:#1A1A1A;">Room Setup</span>
+            </div>
+            <div class="label">ROOM TYPE</div>
+            <div class="chip-row">
+              <div class="chip active">Living Room</div>
+              <div class="chip">Bedroom</div>
+            </div>
+            <div class="label">DIMENSIONS</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+              <div>
+                <div style="font-size:10px;color:#DC2626;margin-bottom:4px;font-weight:600;">Width (ft) ✕</div>
+                <div class="input" style="margin:0;text-align:center;font-size:16px;font-weight:700;border-color:#DC2626;background:#FFF0F0;color:#DC2626;">5</div>
+              </div>
+              <div>
+                <div style="font-size:10px;color:#aaa;margin-bottom:4px;">Length (ft)</div>
+                <div class="input filled" style="margin:0;text-align:center;font-size:16px;font-weight:700;">14</div>
+              </div>
+            </div>
+            <div style="padding:12px 14px;border-radius:12px;background:#FFF0F0;border:1.5px solid #FFBDBD;margin-bottom:16px;">
+              <div style="font-size:12px;color:#DC2626;font-weight:700;margin-bottom:4px;">Invalid Dimensions</div>
+              <div style="font-size:11px;color:#EF4444;line-height:1.5;">Width must be between<br/><b>8 ft and 20 ft.</b> Got: 5 ft</div>
+            </div>
+            <div class="btn-primary" style="background:#DC2626;">Fix & Retry</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Validation Error</div>
+      <div class="phone-file">ErrorToast · 8–20ft check</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SECTION 2 — DESIGN EDITOR 2D
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <div>
+      <div class="section-title">2D Design Editor</div>
+      <div class="section-file">DesignEditorScreen.tsx · DragDropController.ts · GridEngine.ts · Zustand</div>
+    </div>
+  </div>
+  <div class="phones-row">
+
+    <!-- Phone 4: Main editor -->
+    <div>
+      <div class="phone" style="width:240px;">
+        <div class="phone-inner" style="min-height:470px;">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div style="padding:0 14px 16px;">
+            <div class="toolbar" style="margin-top:4px;">
+              <div>
+                <div style="font-size:14px;font-weight:800;color:#1A1A1A;">Living Room</div>
+                <div style="font-size:10px;color:#aaa;font-family:'DM Mono',monospace;">12 × 14 ft · 5 items</div>
+              </div>
+              <div class="toolbar-actions">
+                <div class="badge badge-blue">2D</div>
+                <div class="icon-btn" style="background:#1A1A1A;color:#fff;font-size:11px;font-weight:700;width:auto;padding:0 10px;border-radius:20px;font-family:'Syne',sans-serif;">3D ↗</div>
+              </div>
+            </div>
+            <!-- Grid -->
+            <div style="width:100%;aspect-ratio:1;background:#fff;border:1.5px solid #E5E3DE;border-radius:12px;position:relative;overflow:hidden;margin-bottom:12px;">
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+                <defs>
+                  <pattern id="grid" width="17.5" height="17.5" patternUnits="userSpaceOnUse">
+                    <path d="M 17.5 0 L 0 0 0 17.5" fill="none" stroke="#EEECEa" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)"/>
+                <!-- Sofa -->
+                <rect x="10" y="10" width="72" height="42" rx="5" fill="#EBF3FF" stroke="#3B82F6" stroke-width="1.5"/>
+                <text x="46" y="35" fill="#1D4ED8" font-size="9" text-anchor="middle" font-family="Syne" font-weight="600">Sofa</text>
+                <!-- Chair -->
+                <rect x="90" y="12" width="36" height="36" rx="5" fill="#EDFAF4" stroke="#10B981" stroke-width="1.5"/>
+                <text x="108" y="33" fill="#059669" font-size="9" text-anchor="middle" font-family="Syne" font-weight="600">Chair</text>
+                <!-- Coffee Table -->
+                <rect x="30" y="66" width="52" height="34" rx="5" fill="#FFF8E6" stroke="#F59E0B" stroke-width="1.5"/>
+                <text x="56" y="87" fill="#D97706" font-size="9" text-anchor="middle" font-family="Syne" font-weight="600">Table</text>
+                <!-- Lamp (selected - blue outline) -->
+                <rect x="138" y="66" width="26" height="26" rx="5" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 2"/>
+                <text x="151" y="82" fill="#7C3AED" font-size="9" text-anchor="middle" font-family="Syne" font-weight="600">Lamp</text>
+                <!-- shelf -->
+                <rect x="10" y="66" width="14" height="46" rx="3" fill="#F5F0E8" stroke="#D97706" stroke-width="1.5"/>
+                <text x="17" y="93" fill="#92400E" font-size="7" text-anchor="middle" font-family="Syne" font-weight="600" writing-mode="tb">Shelf</text>
+              </svg>
+            </div>
+            <!-- Action row -->
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px;">
+              <div style="padding:9px;border-radius:10px;background:#F0EEE8;font-size:11px;font-weight:700;color:#666;text-align:center;">↺ Undo</div>
+              <div style="padding:9px;border-radius:10px;background:#F0EEE8;font-size:11px;font-weight:700;color:#666;text-align:center;">⟳ Rotate</div>
+              <div style="padding:9px;border-radius:10px;background:#1A1A1A;font-size:11px;font-weight:700;color:#fff;text-align:center;">Save</div>
+            </div>
+            <!-- Furniture sidebar strip -->
+            <div style="font-size:10px;font-weight:700;color:#aaa;letter-spacing:.08em;margin-bottom:6px;">FURNITURE</div>
+            <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;">
+              <div style="flex-shrink:0;padding:8px 12px;border-radius:10px;border:1.5px solid #E5E3DE;background:#fff;font-size:11px;font-weight:600;color:#1A1A1A;text-align:center;">
+                <div style="width:28px;height:18px;background:#EBF3FF;border-radius:4px;margin:0 auto 4px;"></div>Sofa
+              </div>
+              <div style="flex-shrink:0;padding:8px 12px;border-radius:10px;border:1.5px solid #E5E3DE;background:#fff;font-size:11px;font-weight:600;color:#1A1A1A;text-align:center;">
+                <div style="width:20px;height:20px;background:#EDFAF4;border-radius:4px;margin:0 auto 4px;"></div>Chair
+              </div>
+              <div style="flex-shrink:0;padding:8px 12px;border-radius:10px;border:1.5px solid #E5E3DE;background:#fff;font-size:11px;font-weight:600;color:#1A1A1A;text-align:center;">
+                <div style="width:24px;height:16px;background:#FFF8E6;border-radius:4px;margin:0 auto 4px;"></div>Table
+              </div>
+              <div style="flex-shrink:0;padding:8px 12px;border-radius:10px;border:1.5px solid #E5E3DE;background:#fff;font-size:11px;font-weight:600;color:#1A1A1A;text-align:center;">
+                <div style="width:24px;height:20px;background:#F5F0E8;border-radius:4px;margin:0 auto 4px;"></div>Bed
+              </div>
+              <div style="flex-shrink:0;padding:8px 12px;border-radius:10px;border:1.5px solid #E5E3DE;background:#fff;font-size:11px;font-weight:600;color:#1A1A1A;text-align:center;">
+                <div style="width:14px;height:14px;background:#FFF0F0;border-radius:50%;margin:0 auto 4px;"></div>Lamp
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Design Editor</div>
+      <div class="phone-file">DesignEditorScreen.tsx</div>
+    </div>
+
+    <!-- Phone 5: Collision YES -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div class="screen-content">
+            <div class="toolbar" style="margin-top:4px;">
+              <div style="font-size:13px;font-weight:800;color:#1A1A1A;">Placing Chair</div>
+              <div class="badge badge-red">COLLISION</div>
+            </div>
+            <div style="width:100%;aspect-ratio:1;background:#fff;border:1.5px solid #FFBDBD;border-radius:12px;position:relative;overflow:hidden;margin-bottom:12px;">
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs><pattern id="grid2" width="17" height="17" patternUnits="userSpaceOnUse"><path d="M 17 0 L 0 0 0 17" fill="none" stroke="#EEECEa" stroke-width="1"/></pattern></defs>
+                <rect width="100%" height="100%" fill="url(#grid2)"/>
+                <rect x="10" y="10" width="70" height="42" rx="5" fill="#EBF3FF" stroke="#3B82F6" stroke-width="1.5"/>
+                <text x="45" y="35" fill="#1D4ED8" font-size="9" text-anchor="middle" font-family="Syne" font-weight="600">Sofa</text>
+                <!-- Red collision preview -->
+                <rect x="48" y="28" width="44" height="38" rx="5" fill="rgba(239,68,68,.2)" stroke="#EF4444" stroke-width="2" stroke-dasharray="5 3"/>
+                <text x="70" y="51" fill="#DC2626" font-size="9" text-anchor="middle" font-family="Syne" font-weight="700">✕ Chair</text>
+              </svg>
+            </div>
+            <div style="padding:12px;border-radius:12px;background:#FFF0F0;border:1.5px solid #FFBDBD;">
+              <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:2px;">Cannot place here</div>
+              <div style="font-size:10px;color:#EF4444;">Overlaps with Sofa. Move to an empty cell.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Collision Detected</div>
+      <div class="phone-file">CollisionDetector.ts → REJECT</div>
+    </div>
+
+    <!-- Phone 6: Collision NO / Placed -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div class="screen-content">
+            <div class="toolbar" style="margin-top:4px;">
+              <div style="font-size:13px;font-weight:800;color:#1A1A1A;">Chair Placed</div>
+              <div class="badge badge-green">PLACED ✓</div>
+            </div>
+            <div style="width:100%;aspect-ratio:1;background:#fff;border:1.5px solid #A7F3D0;border-radius:12px;position:relative;overflow:hidden;margin-bottom:12px;">
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs><pattern id="grid3" width="17" height="17" patternUnits="userSpaceOnUse"><path d="M 17 0 L 0 0 0 17" fill="none" stroke="#EEECEa" stroke-width="1"/></pattern></defs>
+                <rect width="100%" height="100%" fill="url(#grid3)"/>
+                <rect x="10" y="10" width="70" height="42" rx="5" fill="#EBF3FF" stroke="#3B82F6" stroke-width="1.5"/>
+                <text x="45" y="35" fill="#1D4ED8" font-size="9" text-anchor="middle" font-family="Syne" font-weight="600">Sofa</text>
+                <rect x="92" y="12" width="38" height="38" rx="5" fill="#EDFAF4" stroke="#10B981" stroke-width="2"/>
+                <text x="111" y="34" fill="#059669" font-size="9" text-anchor="middle" font-family="Syne" font-weight="700">Chair ✓</text>
+              </svg>
+            </div>
+            <div style="padding:12px;border-radius:12px;background:#EDFAF4;border:1.5px solid #A7F3D0;">
+              <div style="font-size:11px;font-weight:700;color:#059669;margin-bottom:2px;">Placed successfully</div>
+              <div style="font-size:10px;color:#10B981;">Zustand store updated · grid cells marked</div>
+            </div>
+            <!-- Context actions -->
+            <div class="ctx-menu">
+              <div class="ctx-item">⟳ Rotate 90°</div>
+              <div class="ctx-sep"></div>
+              <div class="ctx-item">⎘ Duplicate</div>
+              <div class="ctx-sep"></div>
+              <div class="ctx-item danger">🗑 Remove</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Item Placed + Actions</div>
+      <div class="phone-file">GridEngine · Zustand store update</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SECTION 3 — 3D VIEW
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <div>
+      <div class="section-title">3D Visualization</div>
+      <div class="section-file">ThreeRenderer.tsx · CoordMapper.ts · expo-gl + expo-three</div>
+    </div>
+  </div>
+  <div class="phones-row">
+
+    <!-- Phone 7: 3D main -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div class="screen-content">
+            <div class="toolbar" style="margin-top:4px;">
+              <div>
+                <div style="font-size:13px;font-weight:800;color:#1A1A1A;">3D View</div>
+                <div style="font-size:10px;color:#aaa;">Living Room · 12×14 ft</div>
+              </div>
+              <div style="display:flex;gap:6px;align-items:center;">
+                <div class="badge badge-green" style="font-size:9px;">30 FPS</div>
+                <div style="padding:4px 10px;border-radius:20px;background:#1A1A1A;color:#fff;font-size:10px;font-weight:700;">← 2D</div>
+              </div>
+            </div>
+            <!-- 3D Scene -->
+            <div class="scene-3d">
+              <svg width="100%" height="100%" viewBox="0 0 183 137" xmlns="http://www.w3.org/2000/svg">
+                <rect width="183" height="137" fill="#EDE9E3"/>
+                <!-- Floor -->
+                <polygon points="20,115 163,115 183,97 40,97" fill="#D6D0C4" stroke="#C0BAB2" stroke-width="0.8"/>
+                <!-- Left wall -->
+                <polygon points="20,115 20,45 40,27 40,97" fill="#E8E4DC" stroke="#D0CCc4" stroke-width="0.8"/>
+                <!-- Back wall -->
+                <polygon points="20,45 183,45 183,27 40,27" fill="#EDEAE4" stroke="#D8D4CC" stroke-width="0.8"/>
+                <!-- Right wall -->
+                <polygon points="163,115 183,97 183,45 163,45" fill="#E0DCD4" stroke="#CCCAC2" stroke-width="0.5"/>
+                <!-- Window on back wall -->
+                <rect x="80" y="29" width="40" height="12" rx="1" fill="#C8D8EC" stroke="#9AAECA" stroke-width="0.5"/>
+                <line x1="100" y1="29" x2="100" y2="41" stroke="#9AAECA" stroke-width="0.5"/>
+                <!-- Sofa -->
+                <polygon points="35,100 35,82 75,78 75,96" fill="#9AAECE" stroke="#6A8ABE" stroke-width="0.8"/>
+                <polygon points="35,82 35,76 75,72 75,78" fill="#7A8AAE" stroke="#5A7A9E" stroke-width="0.8"/>
+                <polygon points="75,100 75,78 88,80 88,102" fill="#8A9ABE" stroke="#6A8ABE" stroke-width="0.8"/>
+                <!-- Coffee table -->
+                <polygon points="90,108 90,100 130,96 130,104" fill="#C8B898" stroke="#A89878" stroke-width="0.8"/>
+                <!-- Chair -->
+                <polygon points="140,98 140,84 158,82 158,96" fill="#B8A888" stroke="#987858" stroke-width="0.8"/>
+                <!-- Lamp -->
+                <line x1="44" y1="98" x2="44" y2="60" stroke="#888" stroke-width="1"/>
+                <ellipse cx="44" cy="59" rx="8" ry="4" fill="#FFE08A" stroke="#F0C050" stroke-width="0.8"/>
+                <!-- Camera hint -->
+                <text x="160" y="133" fill="#A0A0A0" font-size="7" font-family="'DM Mono', monospace" text-anchor="end">expo-three scene</text>
+              </svg>
+              <div style="position:absolute;top:8px;left:8px;display:flex;gap:5px;">
+                <div class="badge badge-green" style="font-size:9px;">3D Live</div>
+                <div class="badge" style="background:rgba(0,0,0,.12);color:#666;font-size:9px;">Isometric</div>
+              </div>
+            </div>
+            <!-- Camera controls -->
+            <div style="font-size:10px;color:#aaa;text-align:center;margin-bottom:10px;">Pinch to zoom · Drag to orbit</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+              <div style="padding:9px;border-radius:10px;background:#F0EEE8;font-size:11px;font-weight:700;color:#666;text-align:center;">⟳ Orbit</div>
+              <div style="padding:9px;border-radius:10px;background:#F0EEE8;font-size:11px;font-weight:700;color:#666;text-align:center;">⊕ Zoom</div>
+              <div style="padding:9px;border-radius:10px;background:#F0EEE8;font-size:11px;font-weight:700;color:#666;text-align:center;">↔ Pan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">3D View</div>
+      <div class="phone-file">ThreeRenderer.tsx</div>
+    </div>
+
+    <!-- Phone 8: Camera presets -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div class="screen-content">
+            <div style="font-size:13px;font-weight:800;color:#1A1A1A;margin-top:4px;margin-bottom:12px;">Camera Presets</div>
+            <!-- Preset options -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+              <div style="padding:12px;border-radius:14px;border:2.5px solid #1A1A1A;background:#F8F7F4;text-align:center;">
+                <div style="font-size:22px;margin-bottom:4px;">⊞</div>
+                <div style="font-size:11px;font-weight:700;color:#1A1A1A;">Top View</div>
+              </div>
+              <div style="padding:12px;border-radius:14px;border:1.5px solid #E5E3DE;background:#fff;text-align:center;">
+                <div style="font-size:22px;margin-bottom:4px;">👁</div>
+                <div style="font-size:11px;font-weight:700;color:#888;">Eye Level</div>
+              </div>
+              <div style="padding:12px;border-radius:14px;border:1.5px solid #E5E3DE;background:#fff;text-align:center;">
+                <div style="font-size:22px;margin-bottom:4px;">◇</div>
+                <div style="font-size:11px;font-weight:700;color:#888;">Isometric</div>
+              </div>
+              <div style="padding:12px;border-radius:14px;border:1.5px solid #E5E3DE;background:#fff;text-align:center;">
+                <div style="font-size:22px;margin-bottom:4px;">⌃</div>
+                <div style="font-size:11px;font-weight:700;color:#888;">Walk-thru</div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div style="font-size:10px;font-weight:700;color:#aaa;margin-bottom:8px;letter-spacing:.06em;">COORD MAPPING</div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="padding:10px;border-radius:10px;background:#F0EEE8;flex:1;text-align:center;">
+                <div style="font-size:9px;color:#aaa;margin-bottom:2px;">2D</div>
+                <div style="font-size:11px;font-weight:700;color:#1A1A1A;font-family:'DM Mono',monospace;">x:3  y:4</div>
+              </div>
+              <div style="font-size:16px;color:#aaa;">→</div>
+              <div style="padding:10px;border-radius:10px;background:#EBF3FF;flex:1;text-align:center;">
+                <div style="font-size:9px;color:#1D4ED8;margin-bottom:2px;">3D</div>
+                <div style="font-size:11px;font-weight:700;color:#1D4ED8;font-family:'DM Mono',monospace;">x:3 y:0 z:4</div>
+              </div>
+            </div>
+            <div style="font-size:10px;color:#aaa;margin-top:6px;">Y=0 always (floor level)</div>
+            <div style="margin-top:12px;padding:8px 10px;border-radius:10px;background:#FFF8E6;border:1.5px solid #FDE68A;">
+              <div style="font-size:10px;font-weight:700;color:#D97706;">Stretch Goal</div>
+              <div style="font-size:10px;color:#92400E;margin-top:2px;">Camera presets · Custom lighting</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Camera Presets</div>
+      <div class="phone-file">CoordMapper.ts (stretch goal)</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SECTION 4 — SAVE / EXPORT / LOAD
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <div>
+      <div class="section-title">Save, Export & Load</div>
+      <div class="section-file">PersistenceManager.ts · ExportService.ts · MongoDB · expo-media-library</div>
+    </div>
+  </div>
+  <div class="phones-row">
+
+    <!-- Phone 9: Save sheet -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div class="screen-content">
+            <div style="font-size:18px;font-weight:800;color:#1A1A1A;margin:4px 0 4px;">Save Design</div>
+            <div class="card">
+              <div class="row" style="margin-bottom:6px;">
+                <div style="font-size:13px;font-weight:700;color:#1A1A1A;">Living Room</div>
+                <div class="badge badge-blue">12×14 ft</div>
+              </div>
+              <div style="font-size:11px;color:#888;">5 furniture items placed</div>
+            </div>
+            <div class="label">SAVE NAME</div>
+            <div class="input filled" style="margin-bottom:14px;">My Living Room v1</div>
+            <div class="btn-primary" style="margin-bottom:6px;">Save to MongoDB ↑</div>
+            <div class="divider"></div>
+            <div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:.06em;margin-bottom:10px;">EXPORT OPTIONS</div>
+            <div class="save-option">
+              <div class="save-icon" style="background:#FFF0F0;">📄</div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#1A1A1A;">Export as PDF</div>
+                <div style="font-size:10px;color:#aaa;">Full room layout · printable</div>
+              </div>
+            </div>
+            <div class="save-option">
+              <div class="save-icon" style="background:#EBF3FF;">🖼</div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:#1A1A1A;">Export as PNG</div>
+                <div style="font-size:10px;color:#aaa;">Screenshot · share anywhere</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Save + Export</div>
+      <div class="phone-file">ExportService.ts · MongoDB.insertOne</div>
+    </div>
+
+    <!-- Phone 10: My Designs -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div class="screen-content">
+            <div class="row" style="margin:4px 0 16px;">
+              <div style="font-size:18px;font-weight:800;color:#1A1A1A;">My Designs</div>
+              <div class="btn-primary" style="width:auto;padding:8px 16px;font-size:11px;margin:0;border-radius:20px;">+ New</div>
+            </div>
+            <!-- Design 1 -->
+            <div class="design-card">
+              <div class="design-thumb">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                  <defs><pattern id="gt" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="#E0DDD6" stroke-width="0.5"/></pattern></defs>
+                  <rect width="100%" height="100%" fill="url(#gt)"/>
+                  <rect x="8" y="8" width="40" height="24" rx="3" fill="#EBF3FF" stroke="#3B82F6" stroke-width="1"/>
+                  <rect x="54" y="10" width="22" height="22" rx="3" fill="#EDFAF4" stroke="#10B981" stroke-width="1"/>
+                  <rect x="18" y="38" width="30" height="18" rx="3" fill="#FFF8E6" stroke="#F59E0B" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="row" style="margin-bottom:4px;">
+                <div style="font-size:13px;font-weight:700;color:#1A1A1A;">Living Room v1</div>
+                <div class="badge badge-green">SAVED</div>
+              </div>
+              <div style="font-size:10px;color:#aaa;margin-bottom:8px;">12×14 ft · 5 items · 2 days ago</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                <div style="padding:8px;border-radius:10px;background:#1A1A1A;font-size:11px;font-weight:700;color:#fff;text-align:center;">Open</div>
+                <div style="padding:8px;border-radius:10px;border:1.5px solid #E5E3DE;font-size:11px;font-weight:700;color:#1A1A1A;text-align:center;">Export</div>
+              </div>
+            </div>
+            <!-- Design 2 -->
+            <div class="design-card">
+              <div class="design-thumb" style="background:#F5F3EF;">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                  <defs><pattern id="gt2" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="#E0DDD6" stroke-width="0.5"/></pattern></defs>
+                  <rect width="100%" height="100%" fill="url(#gt2)"/>
+                  <rect x="8" y="6" width="50" height="30" rx="3" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="1"/>
+                  <rect x="64" y="8" width="20" height="28" rx="3" fill="#FFF8E6" stroke="#F59E0B" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="row" style="margin-bottom:4px;">
+                <div style="font-size:13px;font-weight:700;color:#1A1A1A;">Bedroom Draft</div>
+                <div class="badge badge-amber">DRAFT</div>
+              </div>
+              <div style="font-size:10px;color:#aaa;margin-bottom:8px;">10×12 ft · 3 items · 5 days ago</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                <div style="padding:8px;border-radius:10px;background:#1A1A1A;font-size:11px;font-weight:700;color:#fff;text-align:center;">Open</div>
+                <div style="padding:8px;border-radius:10px;border:1.5px solid #E5E3DE;font-size:11px;font-weight:700;color:#1A1A1A;text-align:center;">Export</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">My Designs</div>
+      <div class="phone-file">MongoDB.findOne({ userId })</div>
+    </div>
+
+    <!-- Phone 11: Export Success -->
+    <div>
+      <div class="phone">
+        <div class="phone-inner" style="display:flex;flex-direction:column;justify-content:center;">
+          <div class="status-bar"><span class="time">9:41</span><div class="dynamic-island"></div></div>
+          <div class="screen-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding-top:20px;padding-bottom:20px;">
+            <div style="width:64px;height:64px;border-radius:20px;background:#EDFAF4;border:2px solid #A7F3D0;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:20px;">✓</div>
+            <div style="font-size:22px;font-weight:800;color:#1A1A1A;text-align:center;margin-bottom:6px;">Exported!</div>
+            <div style="font-size:12px;color:#888;text-align:center;margin-bottom:20px;">living-room-v1.pdf<br/>saved to device gallery</div>
+            <div style="padding:12px 16px;border-radius:14px;background:#EDFAF4;border:1.5px solid #A7F3D0;width:100%;margin-bottom:16px;">
+              <div style="font-size:11px;font-weight:700;color:#059669;margin-bottom:2px;">Offline ready</div>
+              <div style="font-size:10px;color:#10B981;line-height:1.5;">Open PDF/PNG from gallery.<br/>No app needed to view!</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+              <div style="padding:12px;border-radius:12px;background:#1A1A1A;font-size:12px;font-weight:700;color:#fff;text-align:center;">Share</div>
+              <div style="padding:12px;border-radius:12px;border:1.5px solid #E5E3DE;font-size:12px;font-weight:700;color:#1A1A1A;text-align:center;">Done</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Export Success</div>
+      <div class="phone-file">expo-media-library · offline access</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="border-top:1px solid #222;padding-top:24px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
+</div>
+
+</body>
+</html>
