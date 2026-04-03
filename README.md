@@ -1,45 +1,53 @@
-# AI Interior Design Platform (MVP)
+# AI Interior Design Platform 🏠
 
+A modern, AI-powered interior design platform that helps users visualize and plan their room layouts with ease.
 
-This repo contains a monorepo scaffold for the MVP:
+## 🚀 Key Features
 
-- `frontend/`: React Native (TypeScript) app using Expo
-- `backend/`: Node.js (TypeScript) API with MongoDB wiring
+- **Dynamic Room Setup**: Custom dimensions (8ft - 20ft) and wall color selection.
+- **Furniture Catalog**: Room-type aware catalog (Living Room, Bedroom, Kitchen, Office).
+- **Save & Load**: Securely save your designs to the cloud and access them later.
+- **Premium UI**: Clean, responsive interface built with NativeWind.
+- **Monorepo Architecture**: Integrated frontend (Expo) and backend (Express) in one place.
 
-## Prerequisites
+## 🛠️ Tech Stack
 
-- Node.js 18+ (recommended: latest LTS)
-- MongoDB connection string (Atlas or local)
+- **Frontend**: React Native, Expo, TypeScript, NativeWind (Tailwind CSS), Zustand.
+- **Backend**: Node.js, Express, TypeScript, MongoDB (Mongoose), JWT Auth.
+- **Documentation**: API contracts and design guides under `/docs`.
 
-## Quick start
+## 📦 Project Structure
 
-Install deps:
+```text
+├── backend/       # Express.js API
+├── frontend/      # React Native Expo App
+├── docs/          # API & Project Documentation
+└── artifacts/     # Design and progress logs
+```
 
+## 🏁 Getting Started
+
+### 1. Prerequisite
+- Node.js 18+
+- MongoDB (Local or Atlas)
+
+### 2. Installation
+Install root dependencies:
 ```bash
 npm install
 ```
 
-### Backend
+### 3. Backend Setup
+1. `cd backend`
+2. Create `.env` from `.env.example`
+3. Run: `npm run dev`
 
-1. Create `backend/.env` from `backend/.env.example`
-2. Run:
+### 4. Frontend Setup
+1. `cd frontend`
+2. Run: `npx expo start`
 
-```bash
-npm run dev:backend
-```
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).
 
-Health check: `GET /health`
-
-### Frontend
-
-1. Create `frontend/.env` from `frontend/.env.example` (optional)
-2. Run:
-
-```bash
-npm run dev:frontend
-```
-
-## API contracts
-
-See `docs/api-contracts.md`.
-
+---
+*Developed for OJT 2026 - Interior Design AI MVP.*

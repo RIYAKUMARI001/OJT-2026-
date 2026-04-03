@@ -11,6 +11,10 @@
     "dev:frontend": "npm run start -w frontend",
     "lint": "npm run lint -ws",
     "typecheck": "npm run typecheck -ws"
+  },
+  "overrides": {
+    "react-native-reanimated": "~4.1.1",
+    "react-native-worklets": "0.5.1"
   }
 }
 

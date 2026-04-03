@@ -1,17 +1,45 @@
-import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-import { env } from "./src/config/env";
-import { HomeScreen } from "./src/screens/HomeScreen";
+import React from 'react';
+import { View, Text, Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { HomeScreen } from './src/screens/HomeScreen';
+import { RoomSetupScreen } from './src/screens/RoomSetupScreen';
+import { DesignerScreen } from './src/screens/DesignerScreen';
+import { AuthScreen } from './src/screens/AuthScreen';
+import { SavedDesignsScreen } from './src/screens/SavedDesignsScreen';
+import { useNavigationStore } from './src/store/navigationStore';
 
+/**
+ * Main Application Component
+ */
 export default function App() {
+  const currentScreen = useNavigationStore((state) => state.currentScreen);
+
+  const renderScreen = () => {
+    switch (currentScreen) {
+      case 'Home':
+        return <HomeScreen />;
+      case 'RoomSetup':
+        return <RoomSetupScreen />;
+      case 'Designer':
+        return <DesignerScreen />;
+      case 'Auth':
+        return <AuthScreen />;
+      case 'SavedDesigns':
+        return <SavedDesignsScreen />;
+      default:
+        return <HomeScreen />;
+    }
+  };
+
   return (
-    <View className="flex-1">
-      <HomeScreen />
-      <View className="absolute bottom-10 w-full items-center">
-        <Text className="text-[10px] text-neutral-400">API: {env.apiBaseUrl}</Text>
-      </View>
+    <View style={{ flex: 1 }}>
       <StatusBar style="auto" />
+      {Platform.OS === 'web' ? (
+        <Text style={{ position: 'absolute', top: 8, left: 8, zIndex: 9999, color: '#111' }}>
+          WEB RUNNING
+        </Text>
+      ) : null}
+      {renderScreen()}
     </View>
   );
 }
