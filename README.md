@@ -48,6 +48,3 @@ npm install
 
 ## 📄 License
 This project is licensed under the [MIT License](LICENSE).
-
----
-*Developed for OJT 2026 - Interior Design AI MVP.*
