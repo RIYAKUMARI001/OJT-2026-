@@ -41,7 +41,7 @@ function defaultDevApiHost(): string {
 
 const apiBaseUrl =
   process.env.EXPO_PUBLIC_API_BASE_URL?.replace(/\/$/, "") ??
-  `http://${defaultDevApiHost()}:5000`;
+  `https://ojt-2026.onrender.com`;
 
 export const env = {
   apiBaseUrl,

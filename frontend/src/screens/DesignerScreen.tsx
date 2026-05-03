@@ -13,6 +13,9 @@ import { useAppStore } from "../store/useAppStore";
 import { useAuthStore } from "../store/authStore";
 import { designsService } from "../services/designsService";
 import { useDesignsNotifyStore } from "../store/designsNotifyStore";
+import { DraggableItem } from "../components/DraggableItem";
+import ViewShot, { captureRef } from "react-native-view-shot";
+import * as Sharing from "expo-sharing";
 
 const FURNITURE_CATALOG: Record<string, string[]> = {
   "Living Room": ["Sofa", "TV Unit", "Coffee Table", "Armchair", "Rug"],
@@ -29,6 +32,23 @@ export const DesignerScreen: React.FC = () => {
   const token = useAuthStore((s) => s.token);
   const bumpSavedList = useDesignsNotifyStore((s) => s.bumpSavedList);
   const [saving, setSaving] = React.useState(false);
+  const viewShotRef = React.useRef(null);
+
+  const captureAndShare = async () => {
+    try {
+      const uri = await captureRef(viewShotRef, {
+        format: "png",
+        quality: 1,
+      });
+      if (await Sharing.isAvailableAsync()) {
+        await Sharing.shareAsync(uri);
+      } else {
+        Alert.alert("Error", "Sharing is not available on this device");
+      }
+    } catch (e) {
+      Alert.alert("Capture Failed", "Could not save the design layout");
+    }
+  };
 
   const count = placedItems.length;
 
@@ -47,7 +67,7 @@ export const DesignerScreen: React.FC = () => {
         width: room.width,
         length: room.length,
         wallColor: room.wallColor,
-        items: placedItems,
+        items: placedItems.map(item => JSON.stringify(item)),
       });
       bumpSavedList();
       Alert.alert("Saved", "Your room design was saved.");
@@ -79,9 +99,9 @@ export const DesignerScreen: React.FC = () => {
             </Text>
           </View>
           <View className="flex-row items-center gap-2">
-            <View className="bg-accent-blue px-2 py-0.5 rounded-full">
-              <Text className="text-[10px] font-bold text-accent-blueText">2D</Text>
-            </View>
+            <TouchableOpacity onPress={captureAndShare} className="bg-muted px-3 py-1.5 rounded-full" activeOpacity={0.8}>
+              <Text className="text-white text-[10px] font-bold">📷 Capture</Text>
+            </TouchableOpacity>
             <TouchableOpacity className="bg-primary px-3 py-1.5 rounded-full" activeOpacity={0.8}>
               <Text className="text-white text-[10px] font-bold">3D ↗</Text>
             </TouchableOpacity>
@@ -89,27 +109,35 @@ export const DesignerScreen: React.FC = () => {
         </View>
 
         <View className="w-full aspect-square bg-white border-2 border-border rounded-2xl overflow-hidden p-2">
-          <View
-            className="flex-1 rounded-xl border border-dashed border-border items-center justify-center"
-            style={{ backgroundColor: room.wallColor }}
-          >
-            {count === 0 ? (
-              <Text className="text-muted font-mono text-xs text-center px-4">
-                Tap furniture below to add pieces. Grid preview — full 3D engine later.
-              </Text>
-            ) : (
-              <View className="flex-row flex-wrap justify-center gap-2 p-2">
-                {placedItems.map((name, i) => (
-                  <View
-                    key={`${name}-${i}`}
-                    className="bg-white/90 px-3 py-2 rounded-lg border border-border"
-                  >
-                    <Text className="text-[10px] font-bold text-primary">{name}</Text>
-                  </View>
+          <ViewShot ref={viewShotRef} style={{ flex: 1, backgroundColor: 'white' }} collapsable={false}>
+            <View
+              className="flex-1 relative rounded-xl border border-dashed border-border overflow-hidden"
+              style={{ backgroundColor: room.wallColor }}
+              collapsable={false}
+            >
+              {/* Draw Grid Background */}
+              <View className="absolute inset-0" style={{ opacity: 0.1 }}>
+                {Array.from({ length: 20 }).map((_, i) => (
+                  <View key={`h-${i}`} style={{ position: 'absolute', top: i * 20, left: 0, right: 0, height: 1, backgroundColor: '#000' }} />
+                ))}
+                {Array.from({ length: 20 }).map((_, i) => (
+                  <View key={`v-${i}`} style={{ position: 'absolute', left: i * 20, top: 0, bottom: 0, width: 1, backgroundColor: '#000' }} />
                 ))}
               </View>
-            )}
-          </View>
+
+              {count === 0 ? (
+                <View className="flex-1 items-center justify-center">
+                  <Text className="text-muted font-mono text-xs text-center px-4">
+                    Tap furniture below to add pieces. Drag them to arrange.
+                  </Text>
+                </View>
+              ) : (
+                placedItems.map((item) => (
+                  <DraggableItem key={item.id} item={item} />
+                ))
+              )}
+            </View>
+          </ViewShot>
         </View>
 
         <View className="flex-row gap-2 mt-4">

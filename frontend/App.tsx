@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Platform } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { RoomSetupScreen } from './src/screens/RoomSetupScreen';
@@ -32,14 +33,16 @@ export default function App() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar style="auto" />
-      {Platform.OS === 'web' ? (
-        <Text style={{ position: 'absolute', top: 8, left: 8, zIndex: 9999, color: '#111' }}>
-          WEB RUNNING
-        </Text>
-      ) : null}
-      {renderScreen()}
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <StatusBar style="auto" />
+        {Platform.OS === 'web' ? (
+          <Text style={{ position: 'absolute', top: 8, left: 8, zIndex: 9999, color: '#111' }}>
+            WEB RUNNING
+          </Text>
+        ) : null}
+        {renderScreen()}
+      </View>
+    </GestureHandlerRootView>
   );
 }

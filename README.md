@@ -1,14 +1,15 @@
 # AI Interior Design Platform 🏠
 
-A modern, AI-powered interior design platform that helps users visualize and plan their room layouts with ease.
+A simple and easy-to-use AI interior design platform that helps you visualize your perfect room layout before buying any furniture.
 
-## 🚀 Key Features
+## 🚀 What's Inside
 
-- **Dynamic Room Setup**: Custom dimensions (8ft - 20ft) and wall color selection.
-- **Furniture Catalog**: Room-type aware catalog (Living Room, Bedroom, Kitchen, Office).
-- **Save & Load**: Securely save your designs to the cloud and access them later.
-- **Premium UI**: Clean, responsive interface built with NativeWind.
-- **Monorepo Architecture**: Integrated frontend (Expo) and backend (Express) in one place.
+- **Interactive 2D Drag & Drop**: Pick furniture from the catalog and drag it anywhere on the grid.
+- **Smart Grid System**: Realistic 1x1 ft grid to help you measure the space.
+- **Snapshot Feature**: Take a picture of your layout with one tap and save or share it directly from your phone.
+- **Custom Room Setup**: Pick your room type, set dimensions, and even change the wall color.
+- **Cloud Saving**: All your designs are saved securely so you don't lose your work.
+- **Clean UI**: Beautiful, premium design built to feel smooth on mobile.
 
 ## 🛠️ Tech Stack
 
@@ -45,6 +46,3 @@ npm install
 ### 4. Frontend Setup
 1. `cd frontend`
 2. Run: `npx expo start`
-
-## 📄 License
-This project is licensed under the [MIT License](LICENSE).
